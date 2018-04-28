@@ -9,5 +9,6 @@ public class ClassTest {
 		// System.out.println(student.getClass().getInterfaces());
 		// System.out.println(Student.class);
 		System.out.println("sdffff");
+
 	}
 }
