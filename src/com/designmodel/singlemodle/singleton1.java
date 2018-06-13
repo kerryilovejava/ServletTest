@@ -8,6 +8,7 @@ package com.designmodel.singlemodle;
  */
 public class singleton1 {
 
+    //私有化构造
     private singleton1() {
     }
 
