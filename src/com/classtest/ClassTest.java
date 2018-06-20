@@ -8,7 +8,6 @@ public class ClassTest {
 		// System.out.println(student.getClass());
 		// System.out.println(student.getClass().getInterfaces());
 		// System.out.println(Student.class);
-		System.out.println("sdffff");
 		System.out.println("git上传测试");
 
 	}
