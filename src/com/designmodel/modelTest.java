@@ -2,11 +2,11 @@ package com.designmodel;
 
 
 import com.designmodel.factorymodle.*;
+import com.designmodel.observermodel.demo.ConcretObserver;
+import com.designmodel.observermodel.demo.ConcretWeatherSubject;
 import com.designmodel.singlemodle.singleton1;
 import com.designmodel.singlemodle.singleton2;
 import org.junit.Test;
-
-import java.util.Properties;
 
 /**
  * @Description:23种设计模式
@@ -39,12 +39,12 @@ public class modelTest {
     }
 
     /**
-    * 方法描述：工厂模式
-    *
-    * @return  void
-    * @author: 5385
-    * @date: 2018/6/13  17:58
-    */
+     * 方法描述：工厂模式
+     *
+     * @return void
+     * @author: 5385
+     * @date: 2018/6/13  17:58
+     */
     @Test
     public void factorymodle() {
         HairInterface _hairLeft = HairFactory.getHairStyle("left");
@@ -54,13 +54,14 @@ public class modelTest {
         HairInterface _hairOther = HairFactory.getHairStyle("ss");
         _hairRight.draw();
     }
+
     /**
-    * 方法描述：抽象工厂模式
-    *
-    * @return  void
-    * @author: 5385
-    * @date: 2018/6/13  17:58
-    */
+     * 方法描述：抽象工厂模式
+     *
+     * @return void
+     * @author: 5385
+     * @date: 2018/6/13  17:58
+     */
     @Test
     public void factorymodle1() {
         HNFactory _hnFactory = new HNFactory();
@@ -74,4 +75,33 @@ public class modelTest {
 
     }
 
+    /**
+     * 方法描述：观察者模式
+     *
+     * @param []
+     * @return void
+     * @author: 5385
+     * @date: 2018/6/20  15:32
+     */
+    @Test
+    public void observerModel() {
+        //创建目标对象
+        ConcretWeatherSubject _weather = new ConcretWeatherSubject();
+
+        //创建观察者
+        ConcretObserver _observerGirl = new ConcretObserver();
+        _observerGirl.setObserverName("女朋友");
+        _observerGirl.setRemindThing("约会");
+
+        ConcretObserver _observerMum = new ConcretObserver();
+        _observerMum.setObserverName("老妈");
+        _observerMum.setRemindThing("逛街");
+
+        //相互观察者
+        _weather.attach(_observerGirl);
+        _weather.attach(_observerMum);
+
+        //目标发布天气
+        _weather.setWeatherContent("天气晴朗");
+    }
 }

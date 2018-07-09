@@ -1,9 +1,8 @@
 package com.servlet.test;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.google.gson.Gson;
+
+import java.io.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +28,7 @@ public class ServletTest extends HttpServlet {
         String name = request.getParameter("name");
         String age = request.getParameter("age");
         System.out.println(name + "===" + age);
+        writeDataToClient(response, "\"name\":\"zhujinfan\"");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +37,21 @@ public class ServletTest extends HttpServlet {
         System.out.println(name + "===" + age);
         String json = readContentFromStream(request.getInputStream());
         System.out.println(json);
+        writeDataToClient(response, json);
+
+    }
+
+    public static void writeDataToClient(HttpServletResponse response, String resultMsg) {
+        PrintWriter _pw = null;
+        try {
+            _pw = response.getWriter();
+            _pw.write(resultMsg);
+        } catch (IOException e) {
+        } finally {
+            if (_pw != null) {
+                _pw.close();
+            }
+        }
 
     }
 
